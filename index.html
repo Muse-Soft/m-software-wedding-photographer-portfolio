@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Nhiếp Ảnh Cưới — Hero + Bộ Sưu Tập (TEC-50)</title>
+<meta name="description" content="Portfolio nhiếp ảnh cưới một trang: hero ấn tượng và bộ sưu tập 3 phong cách ngoại cảnh, studio, truyền thống.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Theo DESIGN.md (TEC-49): nền #121212, phụ #1C1C1E, thẻ #26262A,
+     chữ #F5F1EA / phụ #A8A29E, accent vàng đồng #C9A227, viền rgba(255,255,255,0.10).
+     TODO: tên studio, giá, thông tin liên hệ thật do PO chốt trước khi public. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #121212; color: #F5F1EA; font-family: Inter, system-ui, sans-serif;
+         font-size: 16px; line-height: 1.6; }
+  h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; font-weight: 600; line-height: 1.15; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: Inter, system-ui, sans-serif; cursor: pointer; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  /* Ghi chú placeholder: hiển thị rõ trên trang, theo AC của TEC-50 */
+  .placeholder-note { background: #26262A; border-bottom: 1px solid rgba(255,255,255,0.10);
+    color: #A8A29E; font-size: 14px; text-align: center; padding: 10px 20px; }
+  .placeholder-note b { color: #C9A227; }
+  /* 4.1 Header sticky */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(18,18,18,0.9);
+    border-bottom: 1px solid rgba(255,255,255,0.10); height: 72px; }
+  .header-in { height: 72px; display: flex; align-items: center; gap: 24px; }
+  .logo { font-family: "Playfair Display", Georgia, serif; font-size: 24px; margin-right: auto; }
+  nav { display: flex; gap: 20px; }
+  nav a:hover { color: #C9A227; }
+  .btn { display: inline-block; font-size: 16px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 12px 24px; border-radius: 4px; border: 1px solid #F5F1EA;
+    background: transparent; color: #F5F1EA; transition: filter 0.2s; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn-gold { background: #C9A227; border-color: #C9A227; color: #121212; }
+  .hamburger { display: none; background: none; border: 1px solid rgba(255,255,255,0.10);
+    color: #F5F1EA; font-size: 22px; padding: 6px 12px; border-radius: 4px; }
+  /* 4.2 Hero 100vh */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; overflow: hidden; background: #1C1C1E; }
+  .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%); }
+  .hero-in { position: relative; z-index: 1; padding: 40px 20px 80px; }
+  .eyebrow { color: #C9A227; text-transform: uppercase; letter-spacing: 4px; font-size: 14px; }
+  .hero h1 { font-size: 72px; margin: 16px 0; }
+  .hero p { color: #F5F1EA; max-width: 640px; margin: 0 auto 28px; font-size: 18px; }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .scroll-hint { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 1;
+    font-size: 28px; color: #C9A227; animation: bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+  /* 4.3 Bộ sưu tập */
+  section.collection { padding: 80px 0; }
+  section.collection h2 { font-size: 36px; text-align: left; }
+  .gold-rule { width: 48px; height: 3px; background: #C9A227; margin: 12px 0 8px; }
+  .section-desc { color: #A8A29E; margin-bottom: 32px; }
+  .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .filters button { background: transparent; border: 1px solid rgba(255,255,255,0.10); color: #F5F1EA;
+    padding: 10px 20px; border-radius: 999px; font-size: 16px; font-weight: 600; }
+  .filters button.active, .filters button:hover { background: #C9A227; border-color: #C9A227; color: #121212; }
+  .style-block { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center;
+    padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.10); }
+  .style-block.reverse .style-cover { order: 2; }
+  .style-cover { overflow: hidden; border-radius: 8px; }
+  .style-cover img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; transition: transform 0.3s; }
+  .style-cover img:hover { transform: scale(1.03); }
+  .style-block h3 { font-size: 28px; margin-bottom: 8px; }
+  .style-block p { color: #A8A29E; margin-bottom: 20px; }
+  .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+  .thumbs img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 6px; cursor: pointer;
+    transition: transform 0.3s; }
+  .thumbs img:hover { transform: scale(1.03); }
+  /* Lightbox: bấm mở, X/ESC đóng, nút qua lại */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.9);
+    align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 8px; }
+  .lightbox figcaption { text-align: center; color: #A8A29E; font-size: 14px; margin-top: 12px; }
+  .lb-btn { position: absolute; background: #C9A227; color: #121212; border: none;
+    font-size: 24px; width: 48px; height: 48px; border-radius: 50%; }
+  .lb-close { top: 20px; right: 20px; }
+  .lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+  footer.mini { border-top: 1px solid rgba(255,255,255,0.10); color: #A8A29E; font-size: 14px;
+    text-align: center; padding: 24px 20px; }
+  @media (max-width: 767px) {
+    nav { display: none; } nav.open { display: flex; flex-direction: column; position: absolute;
+      top: 72px; left: 0; right: 0; background: #121212; padding: 20px; }
+    .hamburger { display: block; }
+    .hero h1 { font-size: 36px; }
+    section.collection h2 { font-size: 28px; }
+    .style-block, .style-block.reverse .style-cover { grid-template-columns: 1fr; order: 0; }
+    .style-cover img { aspect-ratio: 16/9; }
+    .thumbs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) { .thumbs { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<!-- PLACEHOLDER: toàn bộ ảnh dưới đây là ảnh mẫu (picsum, tông tối nhờ lớp phủ gradient),
+     thay bằng ảnh cưới thật của khách trước khi public. Xem ghi chú hiển thị trên trang. -->
+<div class="placeholder-note">📷 <b>Ảnh mẫu placeholder</b> — thay bằng ảnh cưới thật của khách trước khi public.</div>
+
+<header>
+  <div class="wrap header-in">
+    <a class="logo" href="#">Studio Cưới</a>
+    <nav id="mainNav" aria-label="Menu chính">
+      <a href="#collection">Bộ sưu tập</a>
+      <a href="#collection">Gói chụp</a>
+      <a href="#collection">Quy trình</a>
+      <a href="#collection">Nhận xét</a>
+      <a href="#collection">Liên hệ</a>
+    </nav>
+    <a class="btn btn-gold" href="#collection">Đặt lịch chụp</a>
+    <button class="hamburger" aria-label="Mở menu" onclick="document.getElementById('mainNav').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="bg" src="https://picsum.photos/seed/wedding-hero/1920/1080" alt="Ảnh cưới lớn: cô dâu chú rể trong ánh hoàng hôn (ảnh mẫu placeholder)">
+  <div class="hero-in">
+    <p class="eyebrow">Nhiếp ảnh cưới</p>
+    <h1>Khoảnh khắc một lần, giữ trọn một đời</h1>
+    <p>Chúng tôi kể câu chuyện ngày cưới của bạn bằng ánh sáng tự nhiên và những khung hình chân thật nhất.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#collection">Xem bộ sưu tập</a>
+      <a class="btn" href="#collection">Đặt lịch tư vấn</a>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">↓</div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="wrap">
+    <h2>Bộ sưu tập</h2>
+    <div class="gold-rule"></div>
+    <p class="section-desc">Ba phong cách chụp cưới — chọn phong cách để lọc, bấm vào ảnh để xem lớn.</p>
+    <div class="filters" role="group" aria-label="Lọc theo phong cách">
+      <button class="active" data-filter="all" onclick="filterStyles('all', this)">Tất cả</button>
+      <button data-filter="outdoor" onclick="filterStyles('outdoor', this)">Ngoại cảnh</button>
+      <button data-filter="studio" onclick="filterStyles('studio', this)">Studio</button>
+      <button data-filter="traditional" onclick="filterStyles('traditional', this)">Truyền thống</button>
+    </div>
+
+    <!-- Phong cách 1: Ngoại cảnh -->
+    <article class="style-block" data-style="outdoor">
+      <div class="style-cover">
+        <img src="https://picsum.photos/seed/wedding-outdoor/1280/720" alt="Ảnh cưới ngoại cảnh: cô dâu chú rể ngoài trời (ảnh mẫu placeholder)" loading="lazy" onclick="openLightbox(this)">
+      </div>
+      <div>
+        <h3>Ngoại cảnh</h3>
+        <p>Ảnh cưới ngoài trời, ánh sáng tự nhiên, phong cảnh làm nền.</p>
+        <button class="btn btn-gold" onclick="openLightbox(document.querySelector('[data-style=outdoor] .style-cover img'))">Xem thêm</button>
+        <div class="thumbs">
+          <img src="https://picsum.photos/seed/wedding-outdoor-1/400/500" alt="Ảnh mẫu ngoại cảnh 1 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-outdoor-2/400/500" alt="Ảnh mẫu ngoại cảnh 2 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-outdoor-3/400/500" alt="Ảnh mẫu ngoại cảnh 3 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-outdoor-4/400/500" alt="Ảnh mẫu ngoại cảnh 4 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+        </div>
+      </div>
+    </article>
+
+    <!-- Phong cách 2: Studio (đảo ngược: chữ trái, ảnh phải) -->
+    <article class="style-block reverse" data-style="studio">
+      <div class="style-cover">
+        <img src="https://picsum.photos/seed/wedding-studio/1280/720" alt="Ảnh cưới studio: ánh sáng kiểm soát, nền tối (ảnh mẫu placeholder)" loading="lazy" onclick="openLightbox(this)">
+      </div>
+      <div>
+        <h3>Studio</h3>
+        <p>Ảnh trong studio, ánh sáng kiểm soát, nền tối đồng bộ tông trang.</p>
+        <button class="btn btn-gold" onclick="openLightbox(document.querySelector('[data-style=studio] .style-cover img'))">Xem thêm</button>
+        <div class="thumbs">
+          <img src="https://picsum.photos/seed/wedding-studio-1/400/500" alt="Ảnh mẫu studio 1 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-studio-2/400/500" alt="Ảnh mẫu studio 2 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-studio-3/400/500" alt="Ảnh mẫu studio 3 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-studio-4/400/500" alt="Ảnh mẫu studio 4 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+        </div>
+      </div>
+    </article>
+
+    <!-- Phong cách 3: Truyền thống -->
+    <article class="style-block" data-style="traditional">
+      <div class="style-cover">
+        <img src="https://picsum.photos/seed/wedding-traditional/1280/720" alt="Ảnh cưới truyền thống: áo dài, lễ nghi, tông ấm (ảnh mẫu placeholder)" loading="lazy" onclick="openLightbox(this)">
+      </div>
+      <div>
+        <h3>Truyền thống</h3>
+        <p>Áo dài, lễ nghi, tông ấm, trang trọng.</p>
+        <button class="btn btn-gold" onclick="openLightbox(document.querySelector('[data-style=traditional] .style-cover img'))">Xem thêm</button>
+        <div class="thumbs">
+          <img src="https://picsum.photos/seed/wedding-traditional-1/400/500" alt="Ảnh mẫu truyền thống 1 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-traditional-2/400/500" alt="Ảnh mẫu truyền thống 2 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-traditional-3/400/500" alt="Ảnh mẫu truyền thống 3 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/wedding-traditional-4/400/500" alt="Ảnh mẫu truyền thống 4 (placeholder)" loading="lazy" onclick="openLightbox(this)">
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="mini">© 2026 — Bản quyền thuộc về studio. (Trang TEC-50: hero + bộ sưu tập; các section còn lại theo DESIGN.md sẽ do task sau triển khai.)</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Xem ảnh lớn">
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-close" aria-label="Đóng" onclick="closeLightbox()">×</button>
+  <button class="lb-btn lb-prev" aria-label="Ảnh trước" onclick="stepLightbox(-1)">‹</button>
+  <button class="lb-btn lb-next" aria-label="Ảnh sau" onclick="stepLightbox(1)">›</button>
+</div>
+
+<script>
+  // Lọc theo phong cách: ẩn/hiện từng khối phong cách + cập nhật nút đang chọn.
+  function filterStyles(style, btn) {
+    document.querySelectorAll('.filters button').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.style-block').forEach(function (block) {
+      block.style.display = (style === 'all' || block.dataset.style === style) ? '' : 'none';
+    });
+  }
+  // Lightbox: danh sách ảnh = mọi ảnh trong bộ sưu tập + ảnh hero; qua lại, ESC/X đóng.
+  var gallery = Array.prototype.slice.call(document.querySelectorAll('.collection img, .hero img.bg'));
+  var current = 0;
+  function openLightbox(img) {
+    current = gallery.indexOf(img);
+    if (current < 0) current = 0;
+    showCurrent();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function showCurrent() {
+    var img = gallery[current];
+    var lb = document.getElementById('lbImg');
+    lb.src = img.src; lb.alt = img.alt;
+    document.getElementById('lbCap').textContent = img.alt;
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  function stepLightbox(dir) { current = (current + dir + gallery.length) % gallery.length; showCurrent(); }
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') stepLightbox(1);
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+  });
+  document.getElementById('lightbox').addEventListener('click', function (e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+</script>
+</body>
+</html>
