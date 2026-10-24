@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Nhiếp Ảnh Cưới — Hero + Bộ Sưu Tập (TEC-50)</title>
+<title>Portfolio Nhiếp Ảnh Cưới — Gói chụp, Quy trình, Nhận xét, Liên hệ (TEC-51)</title>
 <meta name="description" content="Portfolio nhiếp ảnh cưới một trang: hero ấn tượng và bộ sưu tập 3 phong cách ngoại cảnh, studio, truyền thống.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -82,6 +82,49 @@
   .lb-close { top: 20px; right: 20px; }
   .lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
   .lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+  /* 4.4 Gói chụp (TEC-51) */
+  section.packages { padding: 80px 0; background: #1C1C1E; }
+  section.packages h2, section.process h2, section.testimonials h2, section.contact h2 { font-size: 36px; }
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .price-card { background: #26262A; border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; padding: 32px 24px; }
+  .price-card.featured { border-color: #C9A227; position: relative; }
+  .price-card .badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #C9A227; color: #121212; font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+  .price-card h3 { font-size: 28px; margin-bottom: 8px; }
+  .price { color: #C9A227; font-family: "Playfair Display", Georgia, serif; font-size: 32px; margin: 8px 0 16px; }
+  .price-card ul { list-style: none; color: #A8A29E; }
+  .price-card li { margin-bottom: 10px; padding-left: 24px; position: relative; }
+  .price-card li::before { content: "\2713"; position: absolute; left: 0; color: #C9A227; }
+  .price-card .btn { display: block; text-align: center; margin-top: 24px; }
+  .price-note { color: #A8A29E; font-size: 14px; margin-top: 24px; }
+  /* 4.5 Quy trình (TEC-51) */
+  section.process { padding: 80px 0; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; }
+  .step { border-top: 1px solid rgba(255,255,255,0.10); padding-top: 24px; }
+  .step-num { color: #C9A227; font-family: "Playfair Display", Georgia, serif; font-size: 48px; line-height: 1; }
+  .step h3 { font-size: 22px; margin: 12px 0 8px; }
+  .step p { color: #A8A29E; }
+  /* 4.6 Nhận xét (TEC-51) */
+  section.testimonials { padding: 80px 0; background: #1C1C1E; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .testi-card { background: #26262A; border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; padding: 28px 24px; }
+  .testi-card .quote { color: #C9A227; font-family: "Playfair Display", Georgia, serif; font-size: 48px; line-height: 0.6; }
+  .testi-card p { margin: 16px 0; }
+  .testi-card cite { color: #A8A29E; font-style: normal; font-size: 14px; }
+  /* 4.7 Form liên hệ (TEC-51) */
+  section.contact { padding: 80px 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 32px; }
+  .contact-info p { color: #A8A29E; margin-bottom: 12px; }
+  .contact-info .btn { margin-top: 12px; }
+  form label { display: block; font-weight: 600; margin: 16px 0 6px; }
+  form label:first-child { margin-top: 0; }
+  form input, form select, form textarea { width: 100%; background: #26262A; border: 1px solid rgba(255,255,255,0.10); border-radius: 4px; color: #F5F1EA; font-size: 16px; padding: 12px; font-family: Inter, system-ui, sans-serif; }
+  form .error { display: none; color: #E57373; font-size: 14px; margin-top: 6px; }
+  form .error.show { display: block; }
+  form .btn-gold { width: 100%; margin-top: 24px; }
+  .form-note, .form-success { color: #A8A29E; font-size: 14px; margin-top: 16px; }
+  .form-success { display: none; color: #F5F1EA; border: 1px solid #C9A227; border-radius: 4px; padding: 12px; }
+  .form-success.show { display: block; }
   footer.mini { border-top: 1px solid rgba(255,255,255,0.10); color: #A8A29E; font-size: 14px;
     text-align: center; padding: 24px 20px; }
   @media (max-width: 767px) {
@@ -95,6 +138,17 @@
     .thumbs { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 768px) and (max-width: 1023px) { .thumbs { grid-template-columns: repeat(2, 1fr); } }
+
+  @media (max-width: 767px) {
+    .price-grid, .testi-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    section.packages h2, section.process h2, section.testimonials h2, section.contact h2 { font-size: 28px; }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .price-grid, .testi-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -107,12 +161,12 @@
     <a class="logo" href="#">Studio Cưới</a>
     <nav id="mainNav" aria-label="Menu chính">
       <a href="#collection">Bộ sưu tập</a>
-      <a href="#collection">Gói chụp</a>
-      <a href="#collection">Quy trình</a>
-      <a href="#collection">Nhận xét</a>
-      <a href="#collection">Liên hệ</a>
+      <a href="#packages">Gói chụp</a>
+      <a href="#process">Quy trình</a>
+      <a href="#testimonials">Nhận xét</a>
+      <a href="#contact">Liên hệ</a>
     </nav>
-    <a class="btn btn-gold" href="#collection">Đặt lịch chụp</a>
+    <a class="btn btn-gold" href="#contact">Đặt lịch chụp</a>
     <button class="hamburger" aria-label="Mở menu" onclick="document.getElementById('mainNav').classList.toggle('open')">☰</button>
   </div>
 </header>
@@ -125,7 +179,7 @@
     <p>Chúng tôi kể câu chuyện ngày cưới của bạn bằng ánh sáng tự nhiên và những khung hình chân thật nhất.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="#collection">Xem bộ sưu tập</a>
-      <a class="btn" href="#collection">Đặt lịch tư vấn</a>
+      <a class="btn" href="#contact">Đặt lịch tư vấn</a>
     </div>
   </div>
   <div class="scroll-hint" aria-hidden="true">↓</div>
@@ -199,7 +253,123 @@
   </div>
 </section>
 
-<footer class="mini">© 2026 — Bản quyền thuộc về studio. (Trang TEC-50: hero + bộ sưu tập; các section còn lại theo DESIGN.md sẽ do task sau triển khai.)</footer>
+
+<!-- TEC-51: 4.4 Gói chụp — TODO: giá mẫu dưới đây do Dev đặt theo DESIGN.md, PO chốt giá thật trước khi public. -->
+<section class="packages" id="packages">
+  <div class="wrap">
+    <h2>Gói chụp</h2>
+    <div class="gold-rule"></div>
+    <p class="section-desc">Ba gói chụp cưới — giá mẫu, PO chốt giá thật trước khi public.</p>
+    <div class="price-grid">
+      <article class="price-card">
+        <h3>Cơ bản</h3>
+        <p class="price">8.900.000&nbsp;₫</p>
+        <ul>
+          <li>Chụp 4 giờ, 1 địa điểm</li>
+          <li>100 ảnh đã chỉnh màu</li>
+          <li>Giao file gốc đầy đủ</li>
+          <li>1 nhiếp ảnh gia</li>
+        </ul>
+        <a class="btn" href="#contact">Chọn gói này</a>
+      </article>
+      <article class="price-card featured">
+        <span class="badge">Được chọn nhiều nhất</span>
+        <h3>Trọn gói</h3>
+        <p class="price">15.900.000&nbsp;₫</p>
+        <ul>
+          <li>Chụp cả ngày, tối đa 2 địa điểm</li>
+          <li>300 ảnh đã chỉnh màu, retouch kỹ</li>
+          <li>Album ảnh 30 trang</li>
+          <li>2 nhiếp ảnh gia + trợ lý ánh sáng</li>
+        </ul>
+        <a class="btn btn-gold" href="#contact">Chọn gói này</a>
+      </article>
+      <article class="price-card">
+        <h3>Cao cấp</h3>
+        <p class="price">28.900.000&nbsp;₫</p>
+        <ul>
+          <li>Chụp 2 ngày, không giới hạn địa điểm trong tỉnh</li>
+          <li>500 ảnh đã chỉnh màu, retouch cao cấp</li>
+          <li>Album da cao cấp + ảnh phóng lớn</li>
+          <li>Quay highlight video ngày cưới</li>
+        </ul>
+        <a class="btn" href="#contact">Chọn gói này</a>
+      </article>
+    </div>
+    <p class="price-note">Giá đã bao gồm chỉnh sửa màu; in ấn tính riêng.</p>
+  </div>
+</section>
+
+<!-- TEC-51: 4.5 Quy trình 4 bước -->
+<section class="process" id="process">
+  <div class="wrap">
+    <h2>Quy trình làm việc</h2>
+    <div class="gold-rule"></div>
+    <p class="section-desc">Từ buổi tư vấn đầu tiên đến ngày bạn cầm album trên tay.</p>
+    <div class="steps">
+      <article class="step"><div class="step-num">01</div><h3>Tư vấn &amp; đặt lịch</h3><p>Trao đổi ý tưởng, chọn phong cách, chốt ngày chụp và ký hợp đồng.</p></article>
+      <article class="step"><div class="step-num">02</div><h3>Chụp hình</h3><p>Buổi chụp theo lịch đã chốt; nhiếp ảnh gia hướng dẫn tạo dáng tự nhiên.</p></article>
+      <article class="step"><div class="step-num">03</div><h3>Chọn &amp; chỉnh sửa</h3><p>Bạn chọn ảnh ưng ý; studio chỉnh màu và retouch từng tấm.</p></article>
+      <article class="step"><div class="step-num">04</div><h3>Bàn giao album</h3><p>Giao file gốc + ảnh đã chỉnh và album; hỗ trợ in ấn thêm khi cần.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- TEC-51: 4.6 Nhận xét — Nội dung mẫu, thay bằng nhận xét thật trước khi public. -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <h2>Khách hàng nói gì</h2>
+    <div class="gold-rule"></div>
+    <p class="section-desc">Nội dung mẫu — thay bằng nhận xét thật của khách trước khi public.</p>
+    <div class="testi-grid">
+      <article class="testi-card"><div class="quote">&ldquo;</div><p>Ảnh tự nhiên, không gượng gạo. Cả ngày chụp mà chúng tôi vẫn thấy thoải mái, cười thật.</p><cite>— Minh Anh &amp; Quốc Huy, chụp 03/2026 (mẫu)</cite></article>
+      <article class="testi-card"><div class="quote">&ldquo;</div><p>Màu ảnh ấm, đúng tông chúng tôi thích. Album về tay đẹp hơn cả mong đợi.</p><cite>— Thu Thảo &amp; Đức Anh, chụp 05/2026 (mẫu)</cite></article>
+      <article class="testi-card"><div class="quote">&ldquo;</div><p>Team đúng giờ, chuẩn bị kỹ, xử lý nhanh cả khi trời đổi nắng. Rất yên tâm giao ngày quan trọng.</p><cite>— Phương Linh &amp; Tuấn Kiệt, chụp 06/2026 (mẫu)</cite></article>
+    </div>
+  </div>
+</section>
+
+<!-- TEC-51: 4.7 Form liên hệ — TODO: chưa có cấu hình gửi mail; v1 chỉ validate phía client + hiển thị thông báo, KHÔNG gửi mail thật. -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Liên hệ / Đặt lịch</h2>
+    <div class="gold-rule"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p><strong>Thông tin liên hệ mẫu</strong> — PO chốt số thật trước khi public.</p>
+        <p>Điện thoại: 0900 000 000 (mẫu)</p>
+        <p>Email: hello@studio-cuoi.example (mẫu)</p>
+        <p>Địa chỉ studio: 123 Đường Mẫu, TP. Hồ Chí Minh (mẫu)</p>
+        <p>Giờ làm việc: 9:00–18:00, thứ Hai – thứ Bảy</p>
+        <a class="btn btn-gold" href="tel:0900000000">Gọi / Zalo</a>
+        <p class="form-note">Form bên cạnh là form mẫu: chưa gửi mail thật vì chưa có cấu hình gửi mail. Studio sẽ liên hệ lại sau khi bạn gửi yêu cầu qua kênh liên hệ trên.</p>
+      </div>
+      <form id="contactForm" novalidate>
+        <label for="fName">Họ tên *</label>
+        <input id="fName" name="name" type="text" required>
+        <p class="error" id="eName">Vui lòng nhập họ tên.</p>
+        <label for="fPhone">Số điện thoại *</label>
+        <input id="fPhone" name="phone" type="tel" required>
+        <p class="error" id="ePhone">Vui lòng nhập số điện thoại hợp lệ (tối thiểu 9 chữ số).</p>
+        <label for="fDate">Ngày dự kiến chụp</label>
+        <input id="fDate" name="date" type="date">
+        <label for="fPackage">Gói quan tâm</label>
+        <select id="fPackage" name="package">
+          <option>Cơ bản</option>
+          <option selected>Trọn gói</option>
+          <option>Cao cấp</option>
+        </select>
+        <label for="fMsg">Lời nhắn</label>
+        <textarea id="fMsg" name="message" rows="4"></textarea>
+        <button class="btn btn-gold" type="submit">Gửi yêu cầu</button>
+        <p class="form-note">Form mẫu — chưa gửi mail thật (chưa có cấu hình). Gửi thành công chỉ hiển thị thông báo dưới đây.</p>
+        <p class="form-success" id="formSuccess">Cảm ơn! Studio sẽ liên hệ trong 24h.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="mini">© 2026 — Bản quyền thuộc về studio. (TEC-51: đã đủ gói chụp, quy trình, nhận xét, form liên hệ; deploy do TEC-53.)</footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Xem ảnh lớn">
   <figure>
@@ -245,6 +415,17 @@
   });
   document.getElementById('lightbox').addEventListener('click', function (e) {
     if (e.target.id === 'lightbox') closeLightbox();
+  });
+
+  // TEC-51: validate form liên hệ phía client; KHÔNG gửi mail thật (chưa có cấu hình).
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.replace(/\D/g, '');
+    var ok = true;
+    document.getElementById('eName').classList.toggle('show', !name); if (!name) ok = false;
+    document.getElementById('ePhone').classList.toggle('show', phone.length < 9); if (phone.length < 9) ok = false;
+    document.getElementById('formSuccess').classList.toggle('show', ok);
   });
 </script>
 </body>
